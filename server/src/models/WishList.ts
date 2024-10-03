@@ -1,7 +1,6 @@
-import { Model, DataTypes, ForeignKey } from 'sequelize';
-import sequelize from '../config/connection';
+import { Model, DataTypes, ForeignKey, Sequelize } from 'sequelize';
 import { User } from './user';
-import LegoSet from './LegoSet';  // Import the LegoSet model
+import { LegoSet } from './LegoSet';  // Import the LegoSet model
 
 // Define the attributes for the WishList model
 interface WishListAttributes {
@@ -22,40 +21,37 @@ class WishList extends Model<WishListAttributes> implements WishListAttributes {
 }
 
 // Initialize the WishList model
-WishList.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true;
-      primaryKey: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: User,
-        key: 'id',
+export const WishListFactory = (sequelize: Sequelize): typeof WishList => {
+  WishList.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        },
+      },
+      legoSetId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: LegoSet,
+          key: 'id',
+        },
       },
     },
-    legoSetId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: LegoSet,
-        key: 'id',
-      },
-    },
-  },
-  {
-    sequelize,
-    modelName: 'WishList',
-    tableName: 'wish_lists',  // Name of the table in the database
-    timestamps: true,
-  }
-);
-
-// Define asscociations
-WishList.belongsTo(User, { foreignKey: 'userId' }); // Associate with User
-WishList.belongsTo(LegoSet, { foreignKey: 'legoSetId' }); // Associate with LegoSet
-
-export default WishList;
+    {
+      sequelize,
+      modelName: 'WishList',
+      tableName: 'wish_lists',  // Name of the table in the database
+      timestamps: true,
+    }
+  );
+  return WishList;
+};
