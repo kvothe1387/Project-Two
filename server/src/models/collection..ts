@@ -1,7 +1,7 @@
-import { Model, DataTypes, ForeignKey } from "sequelize";
-import sequelize from "../config/connection";
+import { Sequelize, Model, DataTypes, ForeignKey } from "sequelize";
+
 import { User } from "./user";
-import LegoSet from "./LegoSet";
+import { LegoSet } from "./LegoSet";
 
 //Define the attributes for the collection model
 interface CollectionAtributes {
@@ -22,40 +22,37 @@ class Collection extends Model<CollectionAtributes> implements CollectionAtribut
 }
 
 // Initialize the Collection model
-Collection.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: User,
-        key: 'id',
+export const CollectionFactory = (sequelize: Sequelize): typeof Collection => {
+  Collection.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        },
+      },
+      legoSetId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: LegoSet,
+          key: 'id',
+        },
       },
     },
-    legoSetId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: LegoSet,
-        key: 'id',
-      },
-    },
-  },
-  {
-    sequelize,
-    modelName: 'Collection',
-    tableName: 'collections', // Name of the table in the db
-    timestamps: true,
-  }
-);
+    {
+      sequelize,
+      tableName: 'collections', // Name of the table in the db
+      timestamps: true,
+    }
+  );
 
-// Define associations
-Collection.belongsTo(User, { foreignKey: 'userId' }); // Associate with User
-Collection.belongsTo(LegoSet, { foreignKey: 'legoSetId' }); // Associate with LegoSet
-
-export default Collection;
+  return Collection;
+};

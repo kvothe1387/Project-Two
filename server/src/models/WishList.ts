@@ -48,7 +48,6 @@ export const WishListFactory = (sequelize: Sequelize): typeof WishList => {
     },
     {
       sequelize,
-      modelName: 'WishList',
       tableName: 'wish_lists',  // Name of the table in the database
       timestamps: true,
     }
