@@ -19,8 +19,7 @@ export class LegoSet extends Model<LegoSetAttributes, LegoSetCreationAttributes>
   public setNum!: string;
   public name!: string;
   public imgUrl!: string;
-  public readonly createdAt?: Date;
-  public readonly updatedAt?: Date;
+
 }
 
 // Initialize the LegoSet model

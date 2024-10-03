@@ -12,7 +12,7 @@ interface WishListAttributes {
 }
 
 // Extend Sequelize's Model class
-class WishList extends Model<WishListAttributes> implements WishListAttributes {
+export class WishList extends Model<WishListAttributes> implements WishListAttributes {
   public id!: number;
   public userId!: ForeignKey<number>;
   public legoSetId!: ForeignKey<number>;
