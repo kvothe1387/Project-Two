@@ -13,7 +13,7 @@ interface CollectionAtributes {
 }
 
 //Extend sequelize's model class
-class Collection extends Model<CollectionAtributes> implements CollectionAtributes {
+export class Collection extends Model<CollectionAtributes> implements CollectionAtributes {
   public id!: number;
   public userId!: ForeignKey<number>;
   public legoSetId!: ForeignKey<number>;

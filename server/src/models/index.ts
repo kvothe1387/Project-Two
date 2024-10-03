@@ -1,7 +1,7 @@
 import sequelize from '../config/connection.js';
 import { UserFactory } from './user.js'; // Import the User factory function
 import { LegoSetFactory } from './LegoSet.js';  // Import the LegoSet factory function
-import { CollectionFactory } from './collection..js';  // Import the Collection factory function
+import { CollectionFactory } from './collection.js';  // Import the Collection factory function
 import { WishListFactory } from './WishList.js'; // Import the WishList factory function
 
 // Initailize models
