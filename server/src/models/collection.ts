@@ -1,7 +1,7 @@
 import { Sequelize, Model, DataTypes, ForeignKey } from "sequelize";
 
-import { User } from "./user";
-import { LegoSet } from "./LegoSet";
+import { User } from "./user.js";
+import { LegoSet } from "./LegoSet.js";
 
 //Define the attributes for the collection model
 interface CollectionAtributes {

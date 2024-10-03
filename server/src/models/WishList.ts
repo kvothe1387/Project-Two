@@ -1,6 +1,6 @@
 import { Model, DataTypes, ForeignKey, Sequelize } from 'sequelize';
-import { User } from './user';
-import { LegoSet } from './LegoSet';  // Import the LegoSet model
+import { User } from './user.js';
+import { LegoSet } from './LegoSet.js';  // Import the LegoSet model
 
 // Define the attributes for the WishList model
 interface WishListAttributes {
