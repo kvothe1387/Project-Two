@@ -7,6 +7,7 @@
  */
 html {
   line-height: 1.15;
+  height: 100%;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
@@ -21,12 +22,20 @@ body {
   margin: 0;
 }
 
+
 /**
  * Render the `main` element consistently in IE.
  */
 main {
   display: block;
+  min-height: 82vh;
+  height: 100px;
 }
+
+/* .h-100 {
+  height: 100% !important;
+
+} */
 
 /**
  * Correct the font size and margin on `h1` elements within `section` and
