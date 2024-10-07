@@ -4,20 +4,20 @@ export const seedLegoSets = async (): Promise<void> => {
   const legoSetData = [
     {
       id: 1,
-      setNum: '10220',
-      name: 'Volkswagen T1 Camper Van',
+      setNum: 10220,
+      setName: 'Volkswagen T1 Camper Van',
       imgUrl: '',
     },
     {
       id: 2,
-      setNum: '10265',
-      name: 'Ford Mustang',
+      setNum: 10265,
+      setName: 'Ford Mustang',
       imgUrl: '',
     },
     {
       id: 3,
-      setNum: '21042',
-      name: 'Statue of Liberty',
+      setNum: 21042,
+      setName: 'Statue of Liberty',
       imgUrl: '',
     },
   ];

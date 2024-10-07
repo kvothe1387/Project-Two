@@ -1,23 +1,24 @@
-import { Model, DataTypes, Optional, Sequelize } from "sequelize";
+import { Model, DataTypes, Sequelize } from "sequelize";
+//import { Collection } from "./collection.js";
 
-//Define the attributes for the LegoSet model
+// Define the attributes for the LegoSet model
 
 interface LegoSetAttributes {
   id?: number;
-  setNum: string;  // Unique set number
-  name: string;    // Name of the LEGO set
+  setNum: number;  // Unique set number
+  setName: string;    // Name of the LEGO set
   imgUrl: string;  // Image URL of the LEGO set
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 
-interface LegoSetCreationAttributes extends Optional<LegoSetAttributes, 'id'> { }
 
-export class LegoSet extends Model<LegoSetAttributes, LegoSetCreationAttributes> implements LegoSetAttributes {
+
+export class LegoSet extends Model<LegoSetAttributes> implements LegoSetAttributes {
   public id!: number;
-  public setNum!: string;
-  public name!: string;
+  public setNum!: number;
+  public setName!: string;
   public imgUrl!: string;
 
 }
@@ -32,11 +33,11 @@ export const LegoSetFactory = (sequelize: Sequelize): typeof LegoSet => {
         primaryKey: true,
       },
       setNum: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         unique: true,
       },
-      name: {
+      setName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -47,11 +48,16 @@ export const LegoSetFactory = (sequelize: Sequelize): typeof LegoSet => {
     },
     {
       sequelize,
-      modelName: 'LegoSet',
       tableName: 'lego_sets',
+      modelName: 'LegoSet',
       timestamps: true,
     }
   );
 
   return LegoSet;
 };
+
+// LegoSet.hasMany(Collection, {
+//   foreignKey: 'legoSetId', // Foreign key in the Collections table
+//   onDelete: 'CASCADE',      // Delete collections when LegoSet is deleted
+// });

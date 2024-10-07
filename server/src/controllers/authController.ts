@@ -7,8 +7,9 @@ export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const user = await User.findOne({
-    where: { username },
+    where: { username: req.body.username.toString(), },
   });
+
 
   if (!user) {
     return res.status(401).json({ message: 'Authentication failed' });
@@ -20,7 +21,9 @@ export const login = async (req: Request, res: Response) => {
   }
 
   const secretKey = process.env.JWT_SECRET_KEY || '';
-  const token = jwt.sign({ id: user.id, username }, secretKey, { expiresIn: '1d' });
+  const token = jwt.sign({ id: user.userId, username }, secretKey, { expiresIn: '1d' });
 
   return res.json({ token });
+
 };
+
