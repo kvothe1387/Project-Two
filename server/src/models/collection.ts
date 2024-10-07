@@ -1,22 +1,21 @@
-import { Sequelize, Model, DataTypes, ForeignKey } from "sequelize";
-
+import { Sequelize, Model, DataTypes, } from "sequelize";
 import { User } from "./user.js";
 import { LegoSet } from "./LegoSet.js";
 
 //Define the attributes for the collection model
-interface CollectionAtributes {
+interface CollectionAttributes {
   id?: number;
-  userId: ForeignKey<number>; // Refernece to the user
-  legoSetId: ForeignKey<number> // Refernece to the LEGO set
+  userId?: number; // Refernece to the user
+  legoSetId: number; // Refernece to the LEGO set
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 //Extend sequelize's model class
-export class Collection extends Model<CollectionAtributes> implements CollectionAtributes {
+export class Collection extends Model<CollectionAttributes> implements CollectionAttributes {
   public id!: number;
-  public userId!: ForeignKey<number>;
-  public legoSetId!: ForeignKey<number>;
+  public userId!: number;
+  public legoSetId!: number;
   public readonly createdAt?: Date;
   public readonly updatedAt?: Date;
 }
@@ -35,7 +34,7 @@ export const CollectionFactory = (sequelize: Sequelize): typeof Collection => {
         allowNull: false,
         references: {
           model: User,
-          key: 'id',
+          key: 'userId',
         },
       },
       legoSetId: {
@@ -50,9 +49,15 @@ export const CollectionFactory = (sequelize: Sequelize): typeof Collection => {
     {
       sequelize,
       tableName: 'collections', // Name of the table in the db
+      modelName: 'Collection',
       timestamps: true,
     }
   );
 
+
   return Collection;
 };
+
+// // Setting up associations
+// Collection.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+// Collection.belongsTo(LegoSet, { foreignKey: 'legoSetId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });

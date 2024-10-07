@@ -10,7 +10,7 @@ const LegoSet = LegoSetFactory(sequelize);   // Create LegoSet model
 const Collection = CollectionFactory(sequelize);  // Create Collection model
 const WishList = WishListFactory(sequelize);   // Create WishList model
 
-// Set up associations
+//Set up associations
 User.hasMany(Collection, { foreignKey: 'userId' });
 Collection.belongsTo(User, { foreignKey: 'userId' });
 

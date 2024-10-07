@@ -2,6 +2,7 @@ node_modules
 clinet/node_modules
 server/node_modules
 
+dist
 .env
 
 .DS_Store

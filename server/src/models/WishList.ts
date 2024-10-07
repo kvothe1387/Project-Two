@@ -5,8 +5,8 @@ import { LegoSet } from './LegoSet.js';  // Import the LegoSet model
 // Define the attributes for the WishList model
 interface WishListAttributes {
   id?: number;
-  userId: ForeignKey<number>;  // Reference to the user
-  legoSetId: ForeignKey<number>;  // Reference to the LEGO set
+  userId: number;// Reference to the user
+  legoSetId: number;  // Reference to the LEGO set
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -34,7 +34,7 @@ export const WishListFactory = (sequelize: Sequelize): typeof WishList => {
         allowNull: false,
         references: {
           model: User,
-          key: 'id',
+          key: 'userId',
         },
       },
       legoSetId: {

@@ -18,7 +18,11 @@ const login = async (userInfo: UserLogin) => {
 
     return data;
   } catch (err) {
-    console.log('Error from user login: ', err);
+    if (err instanceof Error) {
+      console.error('Error from user login:', err.message);
+    } else {
+      console.error('Error from user login:', err);
+    }
     return Promise.reject('Could not fetch user info');
   }
 };

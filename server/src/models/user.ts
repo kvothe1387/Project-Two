@@ -1,17 +1,18 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
+//import { Collection } from './collection.js'; // Adjust the path as necessary
 
 interface UserAttributes {
-  id: number;
+  userId: number;
   username: string;
   email: string;
   password: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
+interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
 
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-  public id!: number;
+  public userId!: number;
   public username!: string;
   public email!: string;
   public password!: string;
@@ -29,7 +30,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
 export function UserFactory(sequelize: Sequelize): typeof User {
   User.init(
     {
-      id: {
+      userId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -48,7 +49,9 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
     },
     {
+
       tableName: 'users',
+      modelName: 'User',
       sequelize,
       hooks: {
         beforeCreate: async (user: User) => {
@@ -65,3 +68,8 @@ export function UserFactory(sequelize: Sequelize): typeof User {
 
   return User;
 }
+
+// User.hasMany(Collection, {
+//   foreignKey: 'userId', // Foreign key in the Collections table
+//   onDelete: 'CASCADE',   // Delete collections when user is deleted
+// });
