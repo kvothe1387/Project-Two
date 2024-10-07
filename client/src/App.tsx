@@ -11,13 +11,12 @@ function App() {
       <Navbar />
       <main className='container-fluid border border-secondary'>
         <div className="row h-100">
-          <div className="col-md-3 border border-secondary h-100"><LeftSide /></div>
-          <div className="col-md-6 border border-secondary h-100"><Outlet /></div>
-          <div className="col-md-3 border border-secondary h-100"><RightSide /></div>
+
+          <div className="col-md-6"><Outlet /></div>
+
 
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

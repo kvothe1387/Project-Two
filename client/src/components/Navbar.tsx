@@ -17,28 +17,20 @@ const Navbar = () => {
   }, [loginCheck]);
 
   return (
-    <div className='display-flex justify-space-between align-center py-2 px-5 mint-green'>
-      <h1>Lego Collection</h1>
-      <div>
-        {!loginCheck ? (
-          <button className='btn' type='button'>
-            <Link to='/login'>Login</Link>
-          </button>
-        ) : (
-          <button
-            className='btn'
-            type='button'
-            onClick={() => {
-              auth.logout();
-            }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
-    </div>
-
-
+    <ul className="nav justify-content-end">
+      <li className="nav-item">
+        <a className="nav-link active" aria-current="page" href="#">SetCollection</a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#">Wish List</a>
+      </li>
+      <li className="nav-item">
+        <Link to="/search" className="nav-link">Search</Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/login" className="nav-link">Login</Link>
+      </li>
+    </ul>
   );
 };
 

@@ -20,8 +20,30 @@ html {
  */
 body {
   margin: 0;
+  background-image: url('https://t4.ftcdn.net/jpg/06/88/17/69/360_F_688176927_ONawKw6V1iMi2jyCkpIQBCMFR7bWGfF6.jpg');
+
+  background-position: bottom;
+  background-size: cover;
+
 }
 
+;
+
+
+
+.navbar a {
+  color: white;
+  /* Link color */
+  text-decoration: none;
+  /* Remove underline from links */
+  padding: 14px 20px;
+  /* Padding for links */
+}
+
+.navbar a:hover {
+  background-color: #555;
+  /* Background color on hover */
+}
 
 /**
  * Render the `main` element consistently in IE.
