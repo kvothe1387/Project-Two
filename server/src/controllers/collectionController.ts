@@ -49,21 +49,23 @@ export const addCollection = async (req: Request, res: Response) => {
 
 // Remove a LEGO set from the user's collection
 export const removeFromCollection = async (req: Request, res: Response) => {
-  try {
-    const { collectionId } = req.params;
+  const { userId, legoSetId } = req.params;
 
-    // Find the collection item by ID
-    const collectionItem = await Collection.findByPk(collectionId);
+  try {
+    // Check if the LEGO set exists in the user's collection
+    const collectionItem = await Collection.findOne({
+      where: { userId, legoSetId },
+    });
 
     if (!collectionItem) {
-      return res.status(404).json({ message: 'Collection item not found' });
+      return res.status(404).json({ message: "LEGO set not found in collection" });
     }
 
-    // Delete the collection item
+    // Delete the set from the collection
     await collectionItem.destroy();
 
-    return res.status(200).json({ message: 'Collection item deleted successfully' });
+    return res.status(200).json({ message: "LEGO set removed from collection" });
   } catch (error) {
-    return res.status(500).json({ message: 'Error deleting collection item', error });
+    return res.status(500).json({ message: "Error removing LEGO set", error });
   }
 };

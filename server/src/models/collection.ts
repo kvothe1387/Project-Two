@@ -7,6 +7,7 @@ interface CollectionAttributes {
   id?: number;
   userId?: number; // Refernece to the user
   legoSetId: number; // Refernece to the LEGO set
+  setNum?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -16,6 +17,7 @@ export class Collection extends Model<CollectionAttributes> implements Collectio
   public id!: number;
   public userId!: number;
   public legoSetId!: number;
+  public setNum!: number;
   public readonly createdAt?: Date;
   public readonly updatedAt?: Date;
 }
