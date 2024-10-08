@@ -4,7 +4,7 @@ export const seedCollections = async (): Promise<void> => {
   const collectiondata = [
     {
       userId: 1,
-      legoSetId: 10220,
+      legoSetId: 1,
     },
     {
 

@@ -10,6 +10,6 @@ router.get('/:userId', getCollection);
 router.post('/', addCollection);
 
 // DELETE /api/collection - Remove a LEGO set from the user's collection
-router.delete('/', removeFromCollection);
+router.delete('/:userId/:legoSetId', removeFromCollection);
 
 export { router as collectionRouter };
