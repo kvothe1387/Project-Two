@@ -26,7 +26,7 @@ export const getCollection = async (req: Request, res: Response) => {
   }
 };
 
-// Add a lego set to the user's collection
+// Add a lego sexport const addCollection =export const addToCollection = async (req: Request, res: Response) => {
 export const addCollection = async (req: Request, res: Response) => {
   try {
     const { userId, legoSetId } = req.body;
