@@ -42,7 +42,6 @@ This project is a LEGO collection management web application built with the PERN
 ### Steps
 
 1. Clone the repository:
-    * ```bash
     * git clone https://github.com/your-username/lego-collection-manager.git
 
 2. Install dependencies:
